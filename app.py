@@ -67,12 +67,20 @@ class ValorBoll(Exception):
 
 def ProcurarTurmaPorId(Id_turma):
     for dict in dadosTurma["Turma"]:
-        if dict["Id"] == Id_turma
-        return dict
+        if dict["Id"] == Id_turma:
+            return dict
     raise TurmaNaoIdentificada
 
 def CriarNovaTurma(nv_dict):
     dadosTurma["Turma"].append(nv_dict)
+    return
+
+def CriarNovoProfessor(nv_dict):
+    dadosProfessor["Professor"].append(nv_dict)
+    return
+
+def CriarNovoAluno(nv_dict):
+    dados["Alunos"].append(nv_dict)
     return
 
 if __name__ == '__main__':
