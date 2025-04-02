@@ -65,6 +65,15 @@ class ValorBoll(Exception):
 
 #Funções Auxiliares:
 
+def ListarTurma():
+    return dadosTurma["Turma"]
+
+def ListarProfessor():
+    return dadosProfessor["Professor"]
+
+def ListarAlunos():
+    return dados["Alunos"]
+
 def ProcurarTurmaPorId(Id_turma):
     for dict in dadosTurma["Turma"]:
         if dict["Id"] == Id_turma:
@@ -82,6 +91,8 @@ def CriarNovoProfessor(nv_dict):
 def CriarNovoAluno(nv_dict):
     dados["Alunos"].append(nv_dict)
     return
+
+
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
