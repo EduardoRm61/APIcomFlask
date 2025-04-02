@@ -1,5 +1,8 @@
 from flask import Flask, request
 app = Flask(__name__)
+
+# Aqui estão todos os dicionários: 
+
 dados = {"Alunos":[
         {"Id": 8,
         "Nome": "Getúlio",
@@ -83,21 +86,19 @@ def ProcurarTurmaPorId(Id_Turma):
     for dict in dadosTurma["Turma"]:
         if dict["Id"] == Id_Turma:
             return dict
-    raise TurmaNaoIdentificada
-
+    raise TurmaNaoIdentificada()
 
 def ProcurarProfessorPorId(Id_Pro):
     for dict in dadosProfessor["Professor"]:
         if dict["Id"] == Id_Pro:
             return dict
-    raise ProfessorNaoIdentificado
+    raise ProfessorNaoIdentificado()
 
 def ProcurarAlunoPorId(Id_Aluno):
     for dict in dados["Alunos"]:
         if dict["Id"] == Id_Aluno:
             return dict
-    raise AlunoNaoIdentificado
-
+    raise AlunoNaoIdentificado()
 
 def CriarNovaTurma(nv_dict):
     dadosTurma["Turma"].append(nv_dict)
@@ -111,7 +112,32 @@ def CriarNovoAluno(nv_dict):
     dados["Alunos"].append(nv_dict)
     return
 
+def DeletarTurma(Id_turma):
+    turmas = dadosTurma["Turma"]
 
+    for indice, turma in enumerate(turmas):
+        if turma["Id"] == Id_turma:
+            turmas.pop(indice)
+            return {"Resultado": "Turma deleta com êxito!"}
+    raise TurmaNaoIdentificada()
+    
+def DeletarProfessor(Id_pro):
+    professores = dadosProfessor
+
+    for indice, professor in enumerate(professores):
+        if professor["Id"] == Id_pro:
+            professores.pop(indice)
+            return {"Resultado": "Professor deletado com êxito"}
+    raise ProfessorNaoIdentificado()
+
+def DeletarAluno(Id_Aluno):
+    alunos = dados
+
+    for indice, aluno in enumerate(alunos):
+        if aluno["Id"] == Id_Aluno:
+            alunos.pop(indice)
+            return {"Resultado": "Aluno deletado com êxito"}
+    raise AlunoNaoIdentificado
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
