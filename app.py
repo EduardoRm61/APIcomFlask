@@ -80,6 +80,13 @@ def ProcurarTurmaPorId(Id_turma):
             return dict
     raise TurmaNaoIdentificada
 
+def ProcurarProfessorPorId(Id_Pro):
+    for dict in dadosProfessor["Professor"]:
+        if dict["Id"] == Id_Pro:
+            return dict
+    raise ProfessorNaoIdentificado
+
+
 def CriarNovaTurma(nv_dict):
     dadosTurma["Turma"].append(nv_dict)
     return
