@@ -43,5 +43,16 @@ class ProfessorNaoIdentificado(Exception):
         self.msg = msg
         super().__init__(self.msg)
 
+class TurmaExistente(Exception):
+    def __init__(self, *msg):
+        self.msg = msg
+        super().__init__(*msg)
+
+class CadastroDeTurmaFalhado(Exception):
+     def __init__(self, *msg):
+        self.msg = msg
+        super().__init__(*msg)
+        
+
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
