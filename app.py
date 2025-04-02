@@ -31,6 +31,17 @@ dadosTurma = {"Turma":[
         {"ID": 10,"Descrição": "Ambientes Aperacionais", "Professor Id": 24}
 ]}
 
+# Aqui estarão as classes de exceção:
+
+class TurmaNaoIdentificada(Exception):
+    def __init__(self, msg="Erro, Turma não iden"):
+        self.msg = msg
+        super().__init__(self.msg)
+
+class ProfessorNaoIdentificado(Exception):
+    def __init__(self, msg = "Erro, Professor não cadastrado ou inexistente"):
+        self.msg = msg
+        super().__init__(self.msg)
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
