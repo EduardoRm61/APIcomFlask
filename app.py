@@ -151,6 +151,23 @@ def ResetarProfessor():
     dadosProfessor["Professor"] = []
     return {"Resultado":"Lista de Professor resetada!"}
 
+def TurmaExiste(Id_turma):
+    for turma in dadosTurma["Turma"]:
+        if turma["Id"] == Id_turma:
+            return True
+    return False
+
+def ProfessorExiste(Id_pro):
+    for professor in dadosProfessor["Professor"]:
+        if professor["Id"] == Id_pro:
+            return True
+    return False
+
+def AlunoExiste(Id_aluno):
+    for aluno in dados["Alunos"]:
+        if aluno["Id"] == Id_aluno:
+            return True
+    return False
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
