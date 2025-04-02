@@ -63,6 +63,17 @@ class ValorBoll(Exception):
         self.msg = msg
         super().__init__(*msg)
 
+#Funções Auxiliares:
+
+def ProcurarTurmaPorId(Id_turma):
+    for dict in dadosTurma["Turma"]:
+        if dict["Id"] == Id_turma
+        return dict
+    raise TurmaNaoIdentificada
+
+def CriarNovaTurma(nv_dict):
+    dadosTurma["Turma"].append(nv_dict)
+    return
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
