@@ -203,10 +203,42 @@ def ValorBuleano(ValorBooll):
 #             "Descrição": str(e)
 #         }), 500
 
-def AlterarTurma(Id_turma, ):
+def AlterarTurma(Id_turma, Descricao, Ativa, Id_pro ):
     nv_dict = dadosTurma["Turma"]
     try:
         for turma in nv_dict["Turma"]:
+            if turma["Id"] == Id_turma:
+
+                if not TurmaExiste(Id_turma):
+                    return ({
+                        "Erro": "Requisição inválida",
+                        "Descrição": "Id de Turma inexistente"
+                    }), 400
+                
+                if not ValorBoll(Ativa):
+                    return ({
+                        "Erro": "Requisição inválida",
+                        "Descrição": "Valor de ativa incorreto. Digite True ou False"
+                    }), 400 
+                
+                nv_dict["Descrição"] = Descricao
+                nv_dict["Ativa"] = Ativa
+                nv_dict["Professor Id"] = Id_pro
+
+                return {"Detalhes": "Turma alterada com sucessor"}, 200
+        
+        return ({
+            "Erro": "Requisição inválida",
+            "Descrição": "Id da Turma inexistente ou incorreto"
+        }), 400
+    
+    except Exception as e:
+        return ({
+            "Erro": "Não foi possível fazer a requsição",
+            "Decrição": str(e)
+        }),500 
+
+
 
 
 if __name__ == '__main__':
