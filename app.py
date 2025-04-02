@@ -139,5 +139,18 @@ def DeletarAluno(Id_Aluno):
             return {"Resultado": "Aluno deletado com êxito"}
     raise AlunoNaoIdentificado
 
+def ResetarAlunos():
+    dados["Alunos"] = []
+    return {"Resultado": "Lista de Alunos resetada!"}
+
+def ResetarTurma():
+    dadosTurma["Turma"] = []
+    return {"Resultado": "Lista de Turma resetada!"}
+
+def ResetarProfessor():
+    dadosProfessor["Professor"] = []
+    return {"Resultado":"Lista de Professor resetada!"}
+
+
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
