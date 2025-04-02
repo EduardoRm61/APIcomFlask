@@ -44,22 +44,27 @@ class ProfessorNaoIdentificado(Exception):
         super().__init__(self.msg)
 
 class TurmaExistente(Exception):
-    def __init__(self, *msg):
+    def __init__(self, msg= "Erro, Turma inexistente"):
         self.msg = msg
         super().__init__(*msg)
 
 class CadastroDeTurmaFalhado(Exception):
-    def __init__(self, *msg):
+    def __init__(self, msg = "Erro, cadastro de turma falhado, verifique os capos preenchidos"):
         self.msg = msg
         super().__init__(*msg)
 
 class AtualizacaoTurma(Exception):
-    def __init__(self, *msg):
+    def __init__(self, msg = "Erro, não foi possível atualizar os dados de turma, reveja todos os campos digitados"):
         self.msg = msg
         super().__init__(*msg)
 
 class ValorBoll(Exception):
-    def __init__(self, *msg):
+    def __init__(self, msg = "Erro, digite um valor Boll correto: True ou False"):
+        self.msg = msg
+        super().__init__(*msg)
+
+class AlunoNaoIdentificado(Exception):
+    def __init__(self, msg = "Erro, aluno mão identificado ou inexistente"):
         self.msg = msg
         super().__init__(*msg)
 
@@ -74,17 +79,24 @@ def ListarProfessor():
 def ListarAlunos():
     return dados["Alunos"]
 
-def ProcurarTurmaPorId(Id_turma):
+def ProcurarTurmaPorId(Id_Turma):
     for dict in dadosTurma["Turma"]:
-        if dict["Id"] == Id_turma:
+        if dict["Id"] == Id_Turma:
             return dict
     raise TurmaNaoIdentificada
+
 
 def ProcurarProfessorPorId(Id_Pro):
     for dict in dadosProfessor["Professor"]:
         if dict["Id"] == Id_Pro:
             return dict
     raise ProfessorNaoIdentificado
+
+def ProcurarAlunoPorId(Id_Aluno):
+    for dict in dados["Alunos"]:
+        if dict["Id"] == Id_Aluno:
+            return dict
+    raise AlunoNaoIdentificado
 
 
 def CriarNovaTurma(nv_dict):
