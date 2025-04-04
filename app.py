@@ -215,7 +215,7 @@ def AlterarProfessor(Id_pro, Materia, Obs):
     nv_dict = dadosProfessor
 
     for professor in nv_dict["Turma"]:
-        if nv_dict["Id"] == Id_pro:
+        if professor["Id"] == Id_pro:
             if not ProfessorExiste(Id_pro):
                 return ({
                     "Erro": "Requisição inválida",
@@ -227,6 +227,22 @@ def AlterarProfessor(Id_pro, Materia, Obs):
         "Erro": "Requisição inválida",
         "Descrição":"Id do professor não encontrado"
     })
+
+def AlterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
+    nv_dict = dados
+    for aluno in nv_dict["Alunos"]:
+        if aluno["Id"] == id_aluno:
+            
+            if not TurmaExiste(Turma_Id):
+                return ({
+                    "Erro": "Requisição inválida",
+                    "Descrição": "Turma inexistente ou inválida"
+                }), 404
+            
+            if 
+
+
+
 
 
 
