@@ -221,6 +221,8 @@ def AlterarProfessor(Id_pro, Materia, Obs):
                 }), 400
             nv_dict["Matéria"] = Materia
             nv_dict["Observação"] = Obs
+
+            return ({"Descrição":"Professor alterado com sucesso"}),200
     return ({
         "Erro": "Requisição inválida",
         "Descrição":"Id do professor não encontrado"
@@ -240,6 +242,8 @@ def AlterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
                 nv_dict['Id'] = Turma_Id
                 nv_dict['Nota_primeiro_semestre'] = NotaSm01 
                 nv_dict['Nota_primeiro_semestre'] = NotaSm02
+                
+                return ({"Detalhes":"Aluno alterado com sucesso"}),200
     except Exception as e:
         return ({
             "Erro": "Não foi possível fazer a requisição",
