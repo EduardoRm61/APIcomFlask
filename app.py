@@ -260,6 +260,17 @@ def lista_de_alunos():
             "Erro": "Requisição inválida",
             "Descrição": str(e)
         }),400
+    
+@app.route('/Turma', methods=['GET'])
+def listar_turmas():
+    try:
+        turmas = listarTurma()
+        return jsonify(turmas), 200
+    except Exception as e:
+        return jsonify ({
+            "Erro": "Requisição inválida",
+            "Descrição": str(e)
+        }), 400
 
 
 if __name__ == '__main__':
