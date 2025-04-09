@@ -73,46 +73,46 @@ class AlunoNaoIdentificado(Exception):
 
 #Funções Auxiliares:
 
-def ListarTurma():
+def listarTurma():
     return dadosTurma["Turma"]
 
-def ListarProfessor():
+def listarProfessor():
     return dadosProfessor["Professor"]
 
-def ListarAlunos():
+def listarAlunos():
     return dados["Alunos"]
 
-def ProcurarTurmaPorId(Id_Turma):
+def procurarTurmaPorId(Id_Turma):
     for dict in dadosTurma["Turma"]:
         if dict["Id"] == Id_Turma:
             return dict
     raise TurmaNaoIdentificada()
 
-def ProcurarProfessorPorId(Id_Pro):
+def procurarProfessorPorId(Id_Pro):
     for dict in dadosProfessor["Professor"]:
         if dict["Id"] == Id_Pro:
             return dict
     raise ProfessorNaoIdentificado()
 
-def ProcurarAlunoPorId(Id_Aluno):
+def procurarAlunoPorId(Id_Aluno):
     for dict in dados["Alunos"]:
         if dict["Id"] == Id_Aluno:
             return dict
     raise AlunoNaoIdentificado()
 
-def CriarNovaTurma(nv_dict):
+def criarNovaTurma(nv_dict):
     dadosTurma["Turma"].append(nv_dict)
     return
 
-def CriarNovoProfessor(nv_dict):
+def criarNovoProfessor(nv_dict):
     dadosProfessor["Professor"].append(nv_dict)
     return
 
-def CriarNovoAluno(nv_dict):
+def criarNovoAluno(nv_dict):
     dados["Alunos"].append(nv_dict)
     return
 
-def DeletarTurma(Id_turma):
+def deletarTurma(Id_turma):
     turmas = dadosTurma["Turma"]
 
     for indice, turma in enumerate(turmas):
@@ -121,7 +121,7 @@ def DeletarTurma(Id_turma):
             return {"Resultado": "Turma deleta com êxito!"},200
     raise TurmaNaoIdentificada()
     
-def DeletarProfessor(Id_pro):
+def deletarProfessor(Id_pro):
     professores = dadosProfessor
 
     for indice, professor in enumerate(professores):
@@ -130,7 +130,7 @@ def DeletarProfessor(Id_pro):
             return {"Resultado": "Professor deletado com êxito"},200
     raise ProfessorNaoIdentificado()
 
-def DeletarAluno(Id_Aluno):
+def deletarAluno(Id_Aluno):
     alunos = dados
 
     for indice, aluno in enumerate(alunos):
@@ -139,48 +139,48 @@ def DeletarAluno(Id_Aluno):
             return {"Resultado": "Aluno deletado com êxito"},200
     raise AlunoNaoIdentificado
 
-def ResetarAlunos():
+def resetarAlunos():
     dados["Alunos"] = []
     return {"Resultado": "Lista de Alunos resetada!"},200
 
-def ResetarTurma():
+def resetarTurma():
     dadosTurma["Turma"] = []
     return {"Resultado": "Lista de Turma resetada!"},200
 
-def ResetarProfessor():
+def resetarProfessor():
     dadosProfessor["Professor"] = []
     return {"Resultado":"Lista de Professor resetada!"},200
 
-def TurmaExiste(Id_turma):
+def turmaExiste(Id_turma):
     for turma in dadosTurma["Turma"]:
         if turma["Id"] == Id_turma:
             return True
     return False
 
-def ProfessorExiste(Id_pro):
+def professorExiste(Id_pro):
     for professor in dadosProfessor["Professor"]:
         if professor["Id"] == Id_pro:
             return True
     return False
 
-def AlunoExiste(Id_aluno):
+def alunoExiste(Id_aluno):
     for aluno in dados["Alunos"]:
         if aluno["Id"] == Id_aluno:
             return True
     return False
 
-def ValorBuleano(ValorBooll):
+def valorBuleano(ValorBooll):
     if ValorBooll is False or ValorBooll is True:
         return True
     return False
 
-def AlterarTurma(Id_turma, Descricao, Ativa, Id_pro ):
+def alterarTurma(Id_turma, Descricao, Ativa, Id_pro ):
     nv_dict = dadosTurma["Turma"]
     try:
         for turma in nv_dict["Turma"]:
             if turma["Id"] == Id_turma:
 
-                if not TurmaExiste(Id_turma):
+                if not turmaExiste(Id_turma):
                     return ({
                         "Erro": "Requisição inválida",
                         "Descrição": "Id de Turma inexistente"
@@ -209,12 +209,12 @@ def AlterarTurma(Id_turma, Descricao, Ativa, Id_pro ):
             "Decrição": str(e)
         }),500 
 
-def AlterarProfessor(Id_pro, Materia, Obs):
+def alterarProfessor(Id_pro, Materia, Obs):
     nv_dict = dadosProfessor
 
     for professor in nv_dict["Turma"]:
         if professor["Id"] == Id_pro:
-            if not ProfessorExiste(Id_pro):
+            if not professorExiste(Id_pro):
                 return ({
                     "Erro": "Requisição inválida",
                     "Descrição": "Professor inexistente"
@@ -228,13 +228,13 @@ def AlterarProfessor(Id_pro, Materia, Obs):
         "Descrição":"Id do professor não encontrado"
     }),400
 
-def AlterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
+def alterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
     nv_dict = dados
     try:
         for aluno in nv_dict["Alunos"]:
             if aluno["Id"] == id_aluno:
                 
-                if not TurmaExiste(Turma_Id):
+                if not turmaExiste(Turma_Id):
                     return ({
                         "Erro": "Requisição inválida",
                         "Descrição": "Turma inexistente ou inválida"
