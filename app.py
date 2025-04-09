@@ -254,7 +254,7 @@ def alterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
 def lista_de_alunos():
     try:
         turmas = listarAlunos()
-        return jsonify(turmas)
+        return jsonify(turmas),200
     except Exception as e:
         return jsonify ({
             "Erro": "Requisição inválida",
