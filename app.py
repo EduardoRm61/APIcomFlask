@@ -238,7 +238,7 @@ def AlterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
                     return ({
                         "Erro": "Requisição inválida",
                         "Descrição": "Turma inexistente ou inválida"
-                    }), 404 
+                    }), 400
                 nv_dict['Id'] = Turma_Id
                 nv_dict['Nota_primeiro_semestre'] = NotaSm01 
                 nv_dict['Nota_primeiro_semestre'] = NotaSm02
