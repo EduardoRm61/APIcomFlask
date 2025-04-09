@@ -226,7 +226,7 @@ def AlterarProfessor(Id_pro, Materia, Obs):
     return ({
         "Erro": "Requisição inválida",
         "Descrição":"Id do professor não encontrado"
-    })
+    }),400
 
 def AlterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
     nv_dict = dados
