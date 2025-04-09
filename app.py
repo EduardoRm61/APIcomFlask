@@ -272,6 +272,16 @@ def listar_turmas():
             "Descrição": str(e)
         }), 400
 
+@app.route('/Professor', methods=['GET'])
+def listar_professores():
+    try:
+        dados = listarProfessor()
+        return jsonify(dados), 200
+    except Exception as e:
+        return jsonify ({
+            "Erro": "Requisição inválida",
+            "Descrição": str(e)
+        }), 400
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
