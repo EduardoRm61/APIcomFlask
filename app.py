@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Aqui estão todos os dicionários: 
@@ -249,7 +249,17 @@ def alterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
             "Erro": "Não foi possível fazer a requisição",
             "Descrição": str(e)
         }),500
-
+    
+@app.route('/Aluno', methods=['GET'])
+def lista_de_alunos():
+    try:
+        turmas = listarAlunos()
+        return jsonify(turmas)
+    except Exception as e:
+        return jsonify ({
+            "Erro": "Requisição inválida",
+            "Descrição": str(e)
+        }),400
 
 
 if __name__ == '__main__':
