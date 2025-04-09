@@ -250,6 +250,8 @@ def alterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
             "Descrição": str(e)
         }),500
     
+#Aqui estão todas as rotas
+
 @app.route('/Aluno', methods=['GET'])
 def lista_de_alunos():
     try:
