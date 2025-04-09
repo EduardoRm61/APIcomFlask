@@ -118,7 +118,7 @@ def DeletarTurma(Id_turma):
     for indice, turma in enumerate(turmas):
         if turma["Id"] == Id_turma:
             turmas.pop(indice)
-            return {"Resultado": "Turma deleta com êxito!"}
+            return {"Resultado": "Turma deleta com êxito!"},200
     raise TurmaNaoIdentificada()
     
 def DeletarProfessor(Id_pro):
@@ -127,7 +127,7 @@ def DeletarProfessor(Id_pro):
     for indice, professor in enumerate(professores):
         if professor["Id"] == Id_pro:
             professores.pop(indice)
-            return {"Resultado": "Professor deletado com êxito"}
+            return {"Resultado": "Professor deletado com êxito"},200
     raise ProfessorNaoIdentificado()
 
 def DeletarAluno(Id_Aluno):
@@ -136,20 +136,20 @@ def DeletarAluno(Id_Aluno):
     for indice, aluno in enumerate(alunos):
         if aluno["Id"] == Id_Aluno:
             alunos.pop(indice)
-            return {"Resultado": "Aluno deletado com êxito"}
+            return {"Resultado": "Aluno deletado com êxito"},200
     raise AlunoNaoIdentificado
 
 def ResetarAlunos():
     dados["Alunos"] = []
-    return {"Resultado": "Lista de Alunos resetada!"}
+    return {"Resultado": "Lista de Alunos resetada!"},200
 
 def ResetarTurma():
     dadosTurma["Turma"] = []
-    return {"Resultado": "Lista de Turma resetada!"}
+    return {"Resultado": "Lista de Turma resetada!"},200
 
 def ResetarProfessor():
     dadosProfessor["Professor"] = []
-    return {"Resultado":"Lista de Professor resetada!"}
+    return {"Resultado":"Lista de Professor resetada!"},200
 
 def TurmaExiste(Id_turma):
     for turma in dadosTurma["Turma"]:
