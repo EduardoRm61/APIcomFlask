@@ -304,6 +304,17 @@ def listar_professor_por_id(Id):
         return jsonify({
             "Erro": str(prf)
         }), 400
+    
+@app.route('/Turma/Id', methods=['GET'])
+def listar_turma_por_id(Id):
+    try:
+        turma = procurarTurmaPorId(Id)
+        return jsonify(turma),200
+    except TurmaNaoIdentificada as trm:
+        return jsonify ({
+            "Erro": str(trm)
+        }),400
+    
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
