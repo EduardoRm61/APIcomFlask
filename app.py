@@ -336,6 +336,20 @@ def deletar_professor_id(Id):
         return jsonify({
             "Erro": str(prf)
         }),400
+    
+@app.route('/Turma/Deletar/Id', methods=['DELETE'])
+def deletar_turma_por_id(Id):
+    try:
+        deletarTurma(Id)
+        turma = listarTurma()
+        return jsonify(turma), 200
+    except TurmaNaoIdentificada as trm:
+        return jsonify ({
+            "Erro": str(trm)
+        }),400
+    
+
+
 
 
     
