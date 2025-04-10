@@ -258,7 +258,7 @@ def lista_de_alunos():
         turmas = listarAlunos()
         return jsonify(turmas),200
     except Exception as e:
-        return jsonify ({
+        return jsonify({
             "Erro": "Requisição inválida",
             "Descrição": str(e)
         }),400
@@ -269,7 +269,7 @@ def listar_turmas():
         turmas = listarTurma()
         return jsonify(turmas), 200
     except Exception as e:
-        return jsonify ({
+        return jsonify({
             "Erro": "Requisição inválida",
             "Descrição": str(e)
         }), 400
@@ -280,10 +280,21 @@ def listar_professores():
         dados = listarProfessor()
         return jsonify(dados), 200
     except Exception as e:
-        return jsonify ({
+        return jsonify({
             "Erro": "Requisição inválida",
             "Descrição": str(e)
         }), 400
+    
+@app.route('/Aluno/Id', methods=['GET'])
+def listar_aluno_por_id(Id):
+    try:
+        aluno = listar_aluno_por_id(Id)
+        return jsonify(aluno),200
+    except AlunoNaoIdentificado as a:
+        return jsonify ({
+            "Erro": str(a)
+        }), 400
+
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
