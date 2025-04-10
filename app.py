@@ -315,6 +315,17 @@ def listar_turma_por_id(Id):
             "Erro": str(trm)
         }),400
     
+@app.route('/Aluno/Deletar/Id', methods=['DELETE'])
+def deletar_aluno_id(Id):
+    try:
+        deletarAluno(Id)
+        alunos = listarAlunos()
+        return jsonify (alunos), 200
+    except AlunoNaoIdentificado as aln:
+        return jsonify ({
+            "Erro": str(aln)
+        }),400
+    
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
