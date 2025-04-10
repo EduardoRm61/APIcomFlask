@@ -13,7 +13,7 @@ dados = {"Alunos":[
         "Nota_segundo_semestre": 9.5,
         "Média_final": 8.75},
 
-        {"Id": 8,
+        {"Id": 9,
         "Nome": "JUcelino Kubicast",
         "Idade": 73,
         "Turma Id":22,
@@ -37,7 +37,7 @@ dadosTurma = {"Turma":[
 # Aqui estarão as classes de exceção:
 
 class TurmaNaoIdentificada(Exception):
-    def __init__(self, msg="Erro, Turma não iden"):
+    def __init__(self, msg="Erro, Turma não identificada"):
         self.msg = msg
         super().__init__(self.msg)
 
@@ -117,8 +117,9 @@ def deletarTurma(Id_turma):
 
     for indice, turma in enumerate(turmas):
         if turma["Id"] == Id_turma:
+            turma_deltada = turma["Id"]
             turmas.pop(indice)
-            return {"Resultado": "Turma deleta com êxito!"},200
+            return turma_deltada
     raise TurmaNaoIdentificada()
     
 def deletarProfessor(Id_pro):
@@ -285,13 +286,13 @@ def listar_professores():
             "Descrição": str(e)
         }), 400
     
-@app.route('/Aluno/Id', methods=['GET'])
+@app.route('/Aluno/<int:Id>', methods=['GET'])
 def listar_aluno_por_id(Id):
     try:
         aluno = procurarAlunoPorId(Id)
         return jsonify(aluno),200
     except AlunoNaoIdentificado as a:
-        return jsonify ({
+        return jsonify({
             "Erro": str(a)
         }), 400
 
@@ -337,20 +338,34 @@ def deletar_professor_id(Id):
             "Erro": str(prf)
         }),400
     
+# @app.route('/Turma/Deletar/Id', methods=['DELETE'])
+# def deletar_turma_por_id(Id):
+#     try:
+#         #deletarTurma(Id)
+#         turma = deletarTurma(Id)
+#         return jsonify (turma),200
+#     except TurmaNaoIdentificada as trm:
+#         return jsonify ({
+#             "Erro": str(trm)
+#         }),400
+    
 @app.route('/Turma/Deletar/Id', methods=['DELETE'])
 def deletar_turma_por_id(Id):
     try:
-        deletarTurma(Id)
-        turma = listarTurma()
-        return jsonify(turma), 200
+        #deletarTurma(Id)
+        turma = deletarTurma(Id)
+        return jsonify (turma),200
     except TurmaNaoIdentificada as trm:
         return jsonify ({
             "Erro": str(trm)
         }),400
-    
 
-
-
+# @app.route('/Aluno/Resetar', methods = ['DELETE'])
+# def resetar_aluno():
+#     try:
+#         resetarAlunos()
+#         alunos = listarAlunos()
+#         return jsonify(alunos),
 
     
 
