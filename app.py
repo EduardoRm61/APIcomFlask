@@ -325,6 +325,19 @@ def deletar_aluno_id(Id):
         return jsonify ({
             "Erro": str(aln)
         }),400
+
+@app.route('/Professor/Deletar/Id', methods=['DELETE'])
+def deletar_professor_id(Id):
+    try:
+        deletarProfessor(Id)
+        professores = listarAlunos()
+        return jsonify (professores), 200
+    except ProfessorNaoIdentificado as prf:
+        return jsonify({
+            "Erro": str(prf)
+        }),400
+
+
     
 
 if __name__ == '__main__':
