@@ -295,6 +295,15 @@ def listar_aluno_por_id(Id):
             "Erro": str(a)
         }), 400
 
+@app.route('/Professor/Id', methods=['GET'])
+def listar_professor_por_id(Id):
+    try:
+        professor = procurarProfessorPorId(Id)
+        return jsonify(professor),200
+    except ProfessorNaoIdentificado as prf:
+        return jsonify({
+            "Erro": str(prf)
+        }), 400
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
