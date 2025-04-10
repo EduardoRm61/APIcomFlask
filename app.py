@@ -288,7 +288,7 @@ def listar_professores():
 @app.route('/Aluno/Id', methods=['GET'])
 def listar_aluno_por_id(Id):
     try:
-        aluno = listar_aluno_por_id(Id)
+        aluno = procurarAlunoPorId(Id)
         return jsonify(aluno),200
     except AlunoNaoIdentificado as a:
         return jsonify ({
