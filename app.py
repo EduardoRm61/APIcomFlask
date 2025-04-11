@@ -119,16 +119,17 @@ def deletarTurma(Id_turma):
         if turma["Id"] == Id_turma:
             turma_deltada = turma["Id"]
             turmas.pop(indice)
-            return turma_deltada
+            return turma_deltada,200
     raise TurmaNaoIdentificada()
     
 def deletarProfessor(Id_pro):
-    professores = dadosProfessor
+    professores = dadosProfessor["Professor"]
 
     for indice, professor in enumerate(professores):
         if professor["Id"] == Id_pro:
+            dict_deletado = professor
             professores.pop(indice)
-            return {"Resultado": "Professor deletado com êxito"},200
+            return dict_deletado,200
     raise ProfessorNaoIdentificado()
 
 def deletarAluno(Id_Aluno):
@@ -319,7 +320,7 @@ def listar_turma_por_id(Id):
 @app.route('/Aluno/Deletar/Id', methods=['DELETE'])
 def deletar_aluno_id(Id):
     try:
-        deletarAluno(Id)
+        #deletarAluno(Id)
         alunos = listarAlunos()
         return jsonify (alunos), 200
     except AlunoNaoIdentificado as aln:
@@ -327,12 +328,14 @@ def deletar_aluno_id(Id):
             "Erro": str(aln)
         }),400
 
-@app.route('/Professor/Deletar/<int:Id>', methods=['DELETE'])
-def deletar_professor_id(Id):
+@app.route('/Professor/Deletar/<int:Id_pro>', methods=['DELETE'])
+def deletar_professor_id(Id_pro):
     try:
-        deletarProfessor(Id)
-        professores = listarAlunos()
-        return jsonify (professores), 200
+        professor = deletarProfessor(Id_pro)
+        #return jsonify(professor), 200
+        return ({
+            "Professor Deletado!": professor
+        }),200
     except ProfessorNaoIdentificado as prf:
         return jsonify({
             "Erro": str(prf)
