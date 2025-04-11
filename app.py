@@ -30,8 +30,8 @@ dadosProfessor = {"Professor":[
 ]}
 
 dadosTurma = {"Turma":[
-        {"Id":12,"Descrição": "Eng. de Requisitos","Ativa": True, "Professor Id": 22},
-        {"Id": 10,"Descrição": "Ambientes Aperacionais", "Ativa": False, "Professor Id": 24}
+        {"Id":11,"Descrição": "Eng. de Requisitos","Ativa": True, "Professor Id": 12},
+        {"Id": 10,"Descrição": "Ambientes Aperacionais", "Ativa": False, "Professor Id": 15}
 ]}
 
 # Aqui estarão as classes de exceção:
