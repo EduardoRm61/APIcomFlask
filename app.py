@@ -296,7 +296,7 @@ def listar_aluno_por_id(Id):
             "Erro": str(a)
         }), 400
 
-@app.route('/Professor/Id', methods=['GET'])
+@app.route('/Professor/<int:Id>', methods=['GET'])
 def listar_professor_por_id(Id):
     try:
         professor = procurarProfessorPorId(Id)
