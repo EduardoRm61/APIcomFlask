@@ -311,7 +311,9 @@ def listar_professor_por_id(Id):
 def listar_turma_por_id(Id):
     try:
         turma = procurarTurmaPorId(Id)
-        return jsonify(turma),200
+        return jsonify({
+            "Turma Deletada!": turma
+        }),200
     except TurmaNaoIdentificada as trm:
         return jsonify ({
             "Erro": str(trm)
@@ -321,8 +323,10 @@ def listar_turma_por_id(Id):
 def deletar_aluno_id(Id):
     try:
         #deletarAluno(Id)
-        alunos = listarAlunos()
-        return jsonify (alunos), 200
+        aluno = listarAlunos()
+        return jsonify ({
+            "Professor Deletado!": aluno
+        }),200
     except AlunoNaoIdentificado as aln:
         return jsonify ({
             "Erro": str(aln)
@@ -332,7 +336,6 @@ def deletar_aluno_id(Id):
 def deletar_professor_id(Id_pro):
     try:
         professor = deletarProfessor(Id_pro)
-        #return jsonify(professor), 200
         return ({
             "Professor Deletado!": professor
         }),200
@@ -341,16 +344,18 @@ def deletar_professor_id(Id_pro):
             "Erro": str(prf)
         }),400
     
-# @app.route('/Turma/Deletar/Id', methods=['DELETE'])
-# def deletar_turma_por_id(Id):
-#     try:
-#         #deletarTurma(Id)
-#         turma = deletarTurma(Id)
-#         return jsonify (turma),200
-#     except TurmaNaoIdentificada as trm:
-#         return jsonify ({
-#             "Erro": str(trm)
-#         }),400
+@app.route('/Turma/Deletar/Id', methods=['DELETE'])
+def deletar_turma_por_id(Id):
+    try:
+        #deletarTurma(Id)
+        turma = deletarTurma(Id)
+        return jsonify ({
+            "Turma Deletada!": turma
+        }),200
+    except TurmaNaoIdentificada as trm:
+        return jsonify ({
+            "Erro": str(trm)
+        }),400
     
 @app.route('/Turma/Deletar/<int:Id>', methods=['DELETE'])
 def deletar_turma_por_id(Id):
