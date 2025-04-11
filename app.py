@@ -327,7 +327,7 @@ def deletar_aluno_id(Id):
             "Erro": str(aln)
         }),400
 
-@app.route('/Professor/Deletar/Id', methods=['DELETE'])
+@app.route('/Professor/Deletar/<int:Id>', methods=['DELETE'])
 def deletar_professor_id(Id):
     try:
         deletarProfessor(Id)
@@ -349,7 +349,7 @@ def deletar_professor_id(Id):
 #             "Erro": str(trm)
 #         }),400
     
-@app.route('/Turma/Deletar/Id', methods=['DELETE'])
+@app.route('/Turma/Deletar/<int:Id>', methods=['DELETE'])
 def deletar_turma_por_id(Id):
     try:
         #deletarTurma(Id)
