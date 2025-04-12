@@ -137,8 +137,9 @@ def deletarAluno(Id_Aluno):
 
     for indice, aluno in enumerate(alunos):
         if aluno["Id"] == Id_Aluno:
+            dict_deletado = alunos
             alunos.pop(indice)
-            return {"Resultado": "Aluno deletado com êxito"},200
+            return dict_deletado,200
     raise AlunoNaoIdentificado
 
 def resetarAlunos():
@@ -319,11 +320,11 @@ def listar_turma_por_id(Id):
             "Erro": str(trm)
         }),400
     
-@app.route('/Aluno/Deletar/Id', methods=['DELETE'])
+@app.route('/Aluno/Deletar/<int:Id>', methods=['DELETE'])
 def deletar_aluno_id(Id):
     try:
         #deletarAluno(Id)
-        aluno = listarAlunos()
+        aluno = deletarAluno(Id)
         return jsonify ({
             "Professor Deletado!": aluno
         }),200
@@ -344,7 +345,7 @@ def deletar_professor_id(Id_pro):
             "Erro": str(prf)
         }),400
     
-@app.route('/Turma/Deletar/Id', methods=['DELETE'])
+@app.route('/Turma/Deletar/<int:Id>', methods=['DELETE'])
 def deletar_turma_por_id(Id):
     try:
         #deletarTurma(Id)
@@ -356,24 +357,19 @@ def deletar_turma_por_id(Id):
         return jsonify ({
             "Erro": str(trm)
         }),400
-    
-@app.route('/Turma/Deletar/<int:Id>', methods=['DELETE'])
-def deletar_turma_por_id(Id):
-    try:
-        #deletarTurma(Id)
-        turma = deletarTurma(Id)
-        return jsonify (turma),200
-    except TurmaNaoIdentificada as trm:
-        return jsonify ({
-            "Erro": str(trm)
-        }),400
 
-# @app.route('/Aluno/Resetar', methods = ['DELETE'])
-# def resetar_aluno():
-#     try:
-#         resetarAlunos()
-#         alunos = listarAlunos()
-#         return jsonify(alunos),
+@app.route('/Aluno/Resetar', methods = ['DELETE'])
+def resetar_aluno():
+    try:
+        resetarAlunos()
+        alunos = listarAlunos()
+        return jsonify({
+            "Alunos Resetado": alunos
+        }),200
+    except Exception as e:
+        return ({
+            "Requisição inválida": str(e)
+        }),400              # Rever status code 
 
     
 
