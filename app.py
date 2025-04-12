@@ -312,9 +312,7 @@ def listar_professor_por_id(Id):
 def listar_turma_por_id(Id):
     try:
         turma = procurarTurmaPorId(Id)
-        return jsonify({
-            "Turma Deletada!": turma
-        }),200
+        return jsonify (turma),200
     except TurmaNaoIdentificada as trm:
         return jsonify ({
             "Erro": str(trm)
@@ -326,7 +324,7 @@ def deletar_aluno_id(Id):
         #deletarAluno(Id)
         aluno = deletarAluno(Id)
         return jsonify ({
-            "Professor Deletado!": aluno
+            "Aluno Deletado!": aluno
         }),200
     except AlunoNaoIdentificado as aln:
         return jsonify ({
