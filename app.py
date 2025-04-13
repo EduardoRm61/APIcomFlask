@@ -368,6 +368,19 @@ def resetar_aluno():
         return ({
             "Requisição inválida": str(e)
         }),400              # Rever status code 
+    
+@app.route('/Professor/Resetar', methods=['DELETE'])
+def resetar_professores():
+    try:
+        resetarProfessor()
+        professores = listarProfessor()
+        return jsonify ({
+            "Professores Resetados": professores
+        }), 200
+    except Exception as e:
+        return jsonify ({
+            "Requisição inválida": str(e)
+        }),400
 
     
 
