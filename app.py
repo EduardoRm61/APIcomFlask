@@ -382,6 +382,18 @@ def resetar_professores():
             "Requisição inválida": str(e)
         }),400
 
+@app.route("/Turma/Resetar", methods=['DELETE'])
+def resetar_turma():
+    try:
+        resetarTurma()
+        turma = listarTurma()
+        return jsonify ({
+            "Turma resetada": turma 
+        }), 200
+    except Exception as e:
+        return jsonify({
+            "Requisição inválida": str(e)
+        }),400
     
 
 if __name__ == '__main__':
