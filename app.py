@@ -255,7 +255,7 @@ def alterarAluno(id_aluno, Turma_Id, NotaSm01, NotaSm02 ):
     
 #Aqui estão todas as rotas
 
-@app.route('/Aluno', methods=['GET'])
+@app.route('/aluno', methods=['GET'])
 def lista_de_alunos():
     try:
         turmas = listarAlunos()
@@ -266,7 +266,7 @@ def lista_de_alunos():
             "Descrição": str(e)
         }),400
     
-@app.route('/Turma', methods=['GET'])
+@app.route('/turma', methods=['GET'])
 def listar_turmas():
     try:
         turmas = listarTurma()
@@ -277,7 +277,7 @@ def listar_turmas():
             "Descrição": str(e)
         }), 400
 
-@app.route('/Professor', methods=['GET'])
+@app.route('/professor', methods=['GET'])
 def listar_professores():
     try:
         dados = listarProfessor()
@@ -288,7 +288,7 @@ def listar_professores():
             "Descrição": str(e)
         }), 400
     
-@app.route('/Aluno/<int:Id>', methods=['GET'])
+@app.route('/aluno/<int:Id>', methods=['GET'])
 def listar_aluno_por_id(Id):
     try:
         aluno = procurarAlunoPorId(Id)
@@ -298,7 +298,7 @@ def listar_aluno_por_id(Id):
             "Erro": str(a)
         }), 400
 
-@app.route('/Professor/<int:Id>', methods=['GET'])
+@app.route('/professor/<int:Id>', methods=['GET'])
 def listar_professor_por_id(Id):
     try:
         professor = procurarProfessorPorId(Id)
@@ -308,7 +308,7 @@ def listar_professor_por_id(Id):
             "Erro": str(prf)
         }), 400
     
-@app.route('/Turma/<int:Id>', methods=['GET'])
+@app.route('/turma/<int:Id>', methods=['GET'])
 def listar_turma_por_id(Id):
     try:
         turma = procurarTurmaPorId(Id)
@@ -318,7 +318,7 @@ def listar_turma_por_id(Id):
             "Erro": str(trm)
         }),400
     
-@app.route('/Aluno/Deletar/<int:Id>', methods=['DELETE'])
+@app.route('/aluno/deletar/<int:Id>', methods=['DELETE'])
 def deletar_aluno_id(Id):
     try:
         #deletarAluno(Id)
@@ -331,7 +331,7 @@ def deletar_aluno_id(Id):
             "Erro": str(aln)
         }),400
 
-@app.route('/Professor/Deletar/<int:Id_pro>', methods=['DELETE'])
+@app.route('/professor/deletar/<int:Id_pro>', methods=['DELETE'])
 def deletar_professor_id(Id_pro):
     try:
         professor = deletarProfessor(Id_pro)
@@ -343,7 +343,7 @@ def deletar_professor_id(Id_pro):
             "Erro": str(prf)
         }),400
     
-@app.route('/Turma/Deletar/<int:Id>', methods=['DELETE'])
+@app.route('/turma/deletar/<int:Id>', methods=['DELETE'])
 def deletar_turma_por_id(Id):
     try:
         #deletarTurma(Id)
@@ -356,7 +356,7 @@ def deletar_turma_por_id(Id):
             "Erro": str(trm)
         }),400
 
-@app.route('/Aluno/Resetar', methods = ['DELETE'])
+@app.route('/aluno/resetar', methods = ['DELETE'])
 def resetar_aluno():
     try:
         resetarAlunos()
@@ -369,7 +369,7 @@ def resetar_aluno():
             "Requisição inválida": str(e)
         }),400              # Rever status code 
     
-@app.route('/Professor/Resetar', methods=['DELETE'])
+@app.route('/professor/resetar', methods=['DELETE'])
 def resetar_professores():
     try:
         resetarProfessor()
@@ -382,7 +382,7 @@ def resetar_professores():
             "Requisição inválida": str(e)
         }),400
 
-@app.route("/Turma/Resetar", methods=['DELETE'])
+@app.route("/turma/resetar", methods=['DELETE'])
 def resetar_turma():
     try:
         resetarTurma()
@@ -395,6 +395,7 @@ def resetar_turma():
             "Requisição inválida": str(e)
         }),400
     
+
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
