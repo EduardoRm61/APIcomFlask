@@ -381,8 +381,42 @@ def resetar_professores():
         return jsonify ({
             "Requisição inválida": str(e)
         }),400
-
     
+@app.route('/turma', methods=['POST'])
+def criar_nova_turma():
+    nv_dict = request.json # Aqui estamos pegando os dados do servidor pelo request e trasformando eles em json, no caso convertendo os
+
+    try:
+        if not procurarProfessorPorId(nv_dict['Professor Id']):
+            return jsonify({
+                "Erro": "Requisição inválida",
+                "Detalhes": "Id do professor inexistente"
+            }), 400
+        
+        if not turmaExiste(nv_dict['Id']):
+            return jsonify({
+                "Erro": "Requisição inválida",
+                "Detalhes": "Id da Turma existente"
+            }), 400
+        
+        dados_turma = {
+            'Id': int(nv_dict.get('Id')),
+            'Descricao': nv_dict(nv_dict('Descricao')),
+            "Professor Id": int(nv_dict('Professor Id')),
+            "Ativa": nv_dict('Ativa',True)
+        }
+
+        criarNovaTurma(nv_dict)
+        return jsonify ({"Mensagem":"Turma criada com sucesso"}), 201
+    
+    except CadastroDeTurmaFalhado as cdf:
+        return jsonify({
+            "Erro": "Falha ao cadastrar turma",
+            "Detalhes": str(cdf)
+        }), 400
+
+
+
 
 if __name__ == '__main__':
         app.run(host = 'localhost', port = 5002, debug = True)
